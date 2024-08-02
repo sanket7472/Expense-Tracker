@@ -10,7 +10,8 @@ app.use(express.json())
 app.use(cors())
 
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT 
+
 const ConnectDB =async ()=>{
     const conn = await mongoose.connect(process.env.MONGO_URI)
 
@@ -21,8 +22,19 @@ const ConnectDB =async ()=>{
         console.log('Failed to Cannect')
     }
 }
+ConnectDB();
+app.get('/health',(req,res)=>{
 
+    res.json({
+        status: 'ok',
+        message: "Server is running"
+    })
 
+})
 app.get('/',(req, res) =>{
     res.send('Hello World')
+})
+
+app.listen(PORT,()=>{
+    console.log( `server is running on PORT ${PORT}`)
 })
