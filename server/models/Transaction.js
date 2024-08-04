@@ -12,7 +12,8 @@ const TransactionSchema = new Schema({
     },
     Type: {
         type: String,
-        required: true
+        required: true,
+        enum: ['debit', 'credit']
     },
     user: {
         type: Schema.Types.ObjectId,
