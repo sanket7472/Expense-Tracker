@@ -15,8 +15,9 @@ const UserSchema = new Schema({
         required: true
     },
     DOB :  {
-        type: Date,
+        type: String,
         required: true
+        
     }
 
 },

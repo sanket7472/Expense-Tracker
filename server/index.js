@@ -4,33 +4,31 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 dotenv.config()
 
+import Transaction from './models/Transaction.js'
+import { SignUp } from './controllers/user.js'
 
 const app = express()
 app.use(express.json())
 app.use(cors())
 
-
-const PORT = process.env.PORT 
-
-const ConnectDB =async ()=>{
+const ConnectDB = async () => {
     const conn = await mongoose.connect(process.env.MONGO_URI)
 
-    if (conn){
+    if (conn) {
         console.log('MongoDB Connected')
-    }
-    else{
-        console.log('Failed to Cannect')
+    } else {
+        console.log('Failed to Connect')
     }
 }
 ConnectDB();
-app.get('/health',(req,res)=>{
 
+app.get('/health', (req, res) => {
     res.json({
         status: 'ok',
         message: "Server is running"
-    })
-
+    }) // added closing parenthesis
 })
+
 app.get('/', (req, res) => {
     res.json({
         status: 'ok',
@@ -38,6 +36,10 @@ app.get('/', (req, res) => {
     })
 })
 
-app.listen(PORT,()=>{
-    console.log( `server is running on PORT ${PORT}`)
+app.post('/signup', SignUp)
+
+const PORT = process.env.PORT || 5000
+
+app.listen(PORT, () => {
+    console.log(`server is running on PORT ${PORT}`)
 })
