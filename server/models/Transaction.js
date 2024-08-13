@@ -1,6 +1,10 @@
 import { Schema, model } from 'mongoose'
 
 const TransactionSchema = new Schema({
+    title: {
+        type: String,
+        required: true
+    },
     Amount: {
         type: Number,
         required: true

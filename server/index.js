@@ -3,9 +3,10 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import dotenv from 'dotenv'
 dotenv.config()
+import { createTransaction, getTransactions } from './controllers/transaction.js'
 
 import Transaction from './models/Transaction.js'
-import { SignUp } from './controllers/user.js'
+import { SignUp , SignIn } from './controllers/user.js'
 
 const app = express()
 app.use(express.json())
@@ -36,8 +37,11 @@ app.get('/', (req, res) => {
     })
 })
 
-app.post('/signup', SignUp)
+app.get('/transactions', getTransactions)
+app.post('/transactions', createTransaction)
 
+app.post('/signup', SignUp)
+app.post('/signin', SignIn)
 const PORT = process.env.PORT || 5000
 
 app.listen(PORT, () => {

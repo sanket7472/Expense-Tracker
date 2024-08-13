@@ -7,7 +7,7 @@ const SignUp = async (req, res) => {
       FullName,
       email,
       password,
-      DOB : new Date( DOB )
+      DOB: new Date(DOB)
     });
 
     const SavedUser = await user.save();
@@ -26,4 +26,21 @@ const SignUp = async (req, res) => {
   }
 };
 
-export { SignUp };
+const SignIn = async (req, res) => {
+  const { email, password } = req.body;
+  const user = await User.findOne({ email, password });
+  if (user) {
+    res.json({
+      status: 'ok',
+      message: 'User signed in successfully',
+      user: user
+    })
+  }
+  else {
+    res.json({
+      status: 'error',
+      message: 'User not found',
+    });
+  }
+}
+export { SignUp, SignIn }
