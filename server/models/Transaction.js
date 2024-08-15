@@ -26,7 +26,7 @@ const TransactionSchema = new Schema({
     }
 },
     {
-        timestamp: true
+        timestamps: true
     })
 
 const transaction = model('transaction', TransactionSchema)

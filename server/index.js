@@ -38,7 +38,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/transactions', getTransactions)
-app.post('/transactions', createTransaction)
+app.post('/transaction', createTransaction)
 
 app.post('/signup', SignUp)
 app.post('/signin', SignIn)
