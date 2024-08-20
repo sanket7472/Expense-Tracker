@@ -1,46 +1,58 @@
-import User from '../models/User.js';
+import User from "../models/User.js";
 
-const SignUp = async (req, res) => {
-  try {
-    const { FullName, email, password, DOB } = req.body; // get values from request body
+const  PostSignUp = async (req, res) => {
+    const { fullName, email, password, dob } = req.body;
+
     const user = new User({
-      FullName,
-      email,
-      password,
-      DOB: new Date(DOB)
+        fullName,
+        email,
+        password,
+        dob : new Date(dob)
     });
 
-    const SavedUser = await user.save();
-    res.json({
-      status: 'ok',
-      message: 'User created successfully',
-      user: SavedUser
-    });
-  } catch (error) {
-    console.error('Error signing up user:', error);
-    res.status(500).json({
-      status: 'error',
-      message: 'Failed to create user',
-      error: error.message
-    });
-  }
-};
+    try {
+        const savedUser = await user.save();
 
-const SignIn = async (req, res) => {
-  const { email, password } = req.body;
-  const user = await User.findOne({ email, password });
-  if (user) {
-    res.json({
-      status: 'ok',
-      message: 'User signed in successfully',
-      user: user
-    })
-  }
-  else {
-    res.json({
-      status: 'error',
-      message: 'User not found',
-    });
-  }
+        res.json({
+            success: true,
+            message: `SignUp Successfully`,
+            data: savedUser
+        })
+    }
+    catch(e){
+        res.json({
+            success : false,
+            message : e.message,
+            data :null
+        })
+    }
 }
-export { SignUp, SignIn }
+
+const PostLogin = async (req, res) => { 
+    const {email, password } =req.body ;
+
+    const  user = await User.findOne({
+        email : email,
+        password :password
+    });
+
+    if(user){
+        return res.json({
+            success :true,
+            message :"Login Successfull",
+            data :user
+        })
+    }
+    else{
+        return res.json({
+            success :false,
+            message :"Invalid credentials",
+            data :null
+        })
+    }
+}
+
+export {
+    PostSignUp,
+    PostLogin
+}

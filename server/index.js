@@ -1,49 +1,43 @@
-import express from 'express'
-import mongoose from 'mongoose'
-import cors from 'cors'
-import dotenv from 'dotenv'
-dotenv.config()
-import { createTransaction, getTransactions } from './controllers/transaction.js'
+import express from "express"
+import mongoose from "mongoose"
+import cors from "cors"
+import dotenv from "dotenv"
+dotenv.config();
 
-import Transaction from './models/Transaction.js'
-import { SignUp , SignIn } from './controllers/user.js'
+import { PostSignUp , PostLogin } from "./controllers/user.js";
+import {PostTransaction ,getTransaction, deleteTransaction} from "./controllers/transaction.js"
+
 
 const app = express()
-app.use(express.json())
-app.use(cors())
+app.use(express.json());
+app.use(cors());
 
-const ConnectDB = async () => {
-    const conn = await mongoose.connect(process.env.MONGO_URI)
+
+const connectDB = async () => {
+    const conn = await mongoose.connect(process.env.MONGO_URL);
 
     if (conn) {
-        console.log('MongoDB Connected')
-    } else {
-        console.log('Failed to Connect')
+        console.log(`MongoDB connected Successfully..📦`);
     }
-}
-ConnectDB();
-
-app.get('/health', (req, res) => {
-    res.json({
-        status: 'ok',
-        message: "Server is running"
-    }) // added closing parenthesis
-})
+};
+connectDB();
 
 app.get('/', (req, res) => {
     res.json({
-        status: 'ok',
-        message: 'Welcome to the Expense Tracker API'
+        message: "Welcome to expense Tracker"
     })
 })
 
-app.get('/transactions', getTransactions)
-app.post('/transaction', createTransaction)
+app.post("/signup",PostSignUp )
 
-app.post('/signup', SignUp)
-app.post('/signin', SignIn)
-const PORT = process.env.PORT || 5000
+app.post("/login", PostLogin)
 
+app.post("/transaction", PostTransaction)
+app.get("/transactions", getTransaction)
+app.delete("/transaction/:id", deleteTransaction)
+
+
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`server is running on PORT ${PORT}`)
+    console.log(`Server is Running on port ${PORT}`);
 })

@@ -1,0 +1,62 @@
+.title{
+    text-align: center;
+    font-weight: bold;
+    margin: auto 30px;
+    margin-top: 50%;
+    color: rgb(20, 19, 19);
+}
+.FormContainer{
+    box-shadow: 0 0 10px #f0f0f0;
+    background-color: rgb(248, 248, 245);
+    border-radius: 10px;
+    width: 500px;
+    padding: 30px;
+    margin: auto 32%; 
+    margin-top: 50px;
+    margin-bottom: 19px;
+}
+.userInput{
+    display: block;
+    margin: 20px 10px;
+    width: 470px;
+    font-size: 20px;
+    color: rgb(119, 114, 114);
+    padding: 10px 5px;
+    border-radius: 10px;
+    border: none;
+    background-image: linear-gradient(0deg, #e2d3e2 0%, #bad7da 100%);
+}
+.userInput:hover{
+    color: black;
+    box-shadow: 0 0 10px #f0f0f0;
+}
+.userInput:focus, .userInput:active{
+    outline: none;
+    border: 1px solid #0056b3;
+}
+.btnAuth{
+    background-color: #ebc8eb;
+    background-image: linear-gradient(0deg, #dcbcdc 0%, #a1d0d6 100%);
+    background-repeat: no-repeat;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    padding: 5px 30px;
+    margin: auto 180px;
+    font-size: 20px;
+}
+.btnAuth:hover{
+    box-shadow: 0 0 10px #f0f0f0;
+}
+.title{
+    text-align: center;
+    margin: 10px auto;
+    font-size: 40px;
+}
+.switchAccount{
+    text-align: center;
+    text-decoration: none;
+    color: blue;
+    margin: auto 41%;
+    font-size: 19px;
+}

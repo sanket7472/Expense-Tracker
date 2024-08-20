@@ -1,29 +1,30 @@
-import {Schema , model} from 'mongoose'
+import  { Schema , model } from "mongoose"
 
-const UserSchema = new Schema({
-    FullName: {
-        type: String,
-        required: true
+const userSchema = new Schema({
+    fullName : {
+        type : String,
+        require :true
     },
-    email:  {
-        type: String,
-        required: true,
-        unique: true
+    email : {
+        type : String,
+        require :true,
+        unique :true
     },
-    password: {
-        type: String,
-        required: true
+    password : {
+        type : String,
+        require :true,
     },
-    DOB :  {
-        type: String,
-        required: true
-        
-    }
-
+    dob : {
+        type : Date,
+        require :true
+    },
+    
+    
 },
 {
-    timestamp: true
-})
+    timestamps :true
+});
 
-const user = model( 'user', UserSchema)
-export default user
+const User = model("User" , userSchema);
+
+export default User;
