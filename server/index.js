@@ -13,13 +13,16 @@ app.use(express.json());
 app.use(cors());
 
 
-const connectDB = async () => {
-    const conn = await mongoose.connect(process.env.MONGO_URL);
-
+ const connectDB = async () => {
+    const conn = await mongoose.connect(process.env.MONGO_URI)
+  
     if (conn) {
-        console.log(`MongoDB connected Successfully..📦`);
+      console.log('MongoDB connected')
     }
-};
+    else {
+      console.log('MongoDB connection failed')
+    }
+  }
 connectDB();
 
 app.get('/', (req, res) => {
