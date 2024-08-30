@@ -30,7 +30,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
   },
   {
     path :'*',
-    element : <h1>Not Found</h1>
+    element : <h1>404 Not Found</h1>
   }
 ])
 
